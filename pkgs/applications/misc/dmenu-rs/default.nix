@@ -18,13 +18,13 @@
 # See: https://github.com/Shizcow/dmenu-rs#plugins
 stdenv.mkDerivation rec {
   pname = "dmenu-rs";
-  version = "5.5.1";
+  version = "fix-make-install-stest-man-page-bug";
 
   src = fetchFromGitHub {
-    owner = "Shizcow";
+    owner = "benjaminedwardwebb";
     repo = pname;
     rev = version;
-    sha256 = "sha256-WpDqBjIZ5ESnoRtWZmvm+gNTLKqxL4IibRVCj0yRIFM=";
+    sha256 = "sha256-4RUv+k/NBAsmfQQFaSZtN/rQEFxOzNraXy7j1AQIBsw=";
   };
 
   nativeBuildInputs = [
@@ -63,7 +63,7 @@ stdenv.mkDerivation rec {
     chmod +w "$NIX_BUILD_TOP/cargo-vendor-dir"
     mkdir -p "$NIX_BUILD_TOP/cargo-vendor-dir/xcb-0.8.2-readwrite"
     cp -r --no-preserve=mod "$NIX_BUILD_TOP/cargo-vendor-dir/xcb-0.8.2/." "$NIX_BUILD_TOP/cargo-vendor-dir/xcb-0.8.2-readwrite"
-    unlink "$NIX_BUILD_TOP/cargo-vendor-dir/xcb-0.8.2"
+    rm -r "$NIX_BUILD_TOP/cargo-vendor-dir/xcb-0.8.2"
     mv "$NIX_BUILD_TOP/cargo-vendor-dir/xcb-0.8.2-readwrite" "$NIX_BUILD_TOP/cargo-vendor-dir/xcb-0.8.2"
 
     cp ${./Cargo.lock} src/Cargo.lock
